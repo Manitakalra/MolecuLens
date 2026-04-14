@@ -72,11 +72,15 @@ Future Enhancements
 •	Chemical reaction simulation engine 
 •	 Mobile-friendly version 
 
- Contributors
+# Contributors
 TARANIJA SINGH(25MIM10244)
+
 ANUKREETI SINGH (25BCE11154)
+
 SNEHA SARKAR(25BCE11156)
+
 MANITA KALRA (25BCE10983)
+
 NAINA JHA(25BCE11087)
 
  Final Note
