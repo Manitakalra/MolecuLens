@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MolecuLens — Conformational Analysis</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <span class="logo-icon">⬡</span>
+      <span class="logo-text">MolecuLens</span>
+    </div>
+    <div class="header-sub">Interactive Conformational Analysis &amp; Energy Visualization</div>
+    <div class="molecule-selector">
+      <label for="molSelect">Molecule:</label>
+      <select id="molSelect">
+        <option value="ethane">Ethane (C₂H₆)</option>
+        <option value="butane">Butane (C₄H₁₀)</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="grid">
+
+    <!-- 3D VIEWER -->
+    <section class="panel panel-3d">
+      <div class="panel-label">
+        <span class="dot dot-green"></span>
+        3D Molecule Viewer
+        <span class="hint">Drag to rotate · Scroll to zoom</span>
+      </div>
+      <div id="canvas3d"></div>
+      <div class="controls-3d">
+        <button id="btnReset3d" class="btn-ctrl">⟳ Reset</button>
+        <button id="btnBalls" class="btn-ctrl active">Ball &amp; Stick</button>
+        <button id="btnWire" class="btn-ctrl">Wireframe</button>
+        <button id="btnAutoRotate" class="btn-ctrl">▶ Auto Rotate</button>
+      </div>
+      <div class="legend-3d">
+        <span class="leg-item"><span class="leg-dot" style="background:#dde6ff"></span>H (hydrogen)</span>
+        <span class="leg-item"><span class="leg-dot" style="background:#6a7fd6"></span>C (carbon)</span>
+        <span class="leg-item"><span class="leg-dot" style="background:#3de6a0"></span>Bond</span>
+      </div>
+    </section>
+
+    <!-- NEWMAN PROJECTION -->
+    <section class="panel panel-newman">
+      <div class="panel-label">
+        <span class="dot dot-blue"></span>
+        Newman Projection
+        <span class="hint">φ = <span id="dihedralLabel">0°</span></span>
+      </div>
+
+      <div class="newman-wrapper">
+        <canvas id="newmanCanvas" width="300" height="300"></canvas>
+        <div class="newman-axis-label front-label">Front C</div>
+        <div class="newman-axis-label back-label">Back C</div>
+      </div>
+
+      <div class="conformation-buttons">
+        <button class="conf-btn active" data-angle="0">Eclipsed<br><small>φ=0°</small></button>
+        <button class="conf-btn" data-angle="60">Staggered<br><small>φ=60°</small></button>
+        <button class="conf-btn" data-angle="120">Eclipsed<br><small>φ=120°</small></button>
+        <button class="conf-btn" data-angle="180">Anti<br><small>φ=180°</small></button>
+        <button class="conf-btn" data-angle="240">Staggered<br><small>φ=240°</small></button>
+        <button class="conf-btn" data-angle="300">Eclipsed<br><small>φ=300°</small></button>
+      </div>
+
+      <div class="slider-wrap">
+        <label for="dihedralSlider">Manual dihedral angle (φ)</label>
+        <input type="range" id="dihedralSlider" min="0" max="360" value="0" step="1" />
+        <div class="slider-ticks">
+          <span>0°</span><span>60°</span><span>120°</span><span>180°</span><span>240°</span><span>300°</span><span>360°</span>
+        </div>
+      </div>
+
+      <div class="conf-info-box">
+        <div class="conf-name" id="confName">Eclipsed</div>
+        <div class="conf-desc" id="confDesc">All substituents on front and back carbon are directly aligned — maximum torsional strain.</div>
+        <div class="conf-energy" id="confEnergy">Relative energy: <strong id="energyVal">12.6</strong> kJ/mol</div>
+      </div>
+    </section>
+
+    <!-- ENERGY GRAPH -->
+    <section class="panel panel-energy">
+      <div class="panel-label">
+        <span class="dot dot-orange"></span>
+        Torsional Energy Profile
+        <span class="hint">Potential energy vs. dihedral angle φ</span>
+      </div>
+      <div class="chart-container">
+        <canvas id="energyChart"></canvas>
+      </div>
+      <div class="graph-legend">
+        <span class="gl-item"><span class="gl-line" style="background:#f97316"></span>Potential energy curve</span>
+        <span class="gl-item"><span class="gl-dot2"></span>Current conformation</span>
+        <span class="gl-item gl-note">▲ Maxima = eclipsed &nbsp;&nbsp; ▼ Minima = staggered</span>
+      </div>
+      <div class="energy-readout">
+        <div class="er-item">
+          <div class="er-val" id="erAngle">0°</div>
+          <div class="er-key">Dihedral (φ)</div>
+        </div>
+        <div class="er-item">
+          <div class="er-val" id="erEnergy">12.6</div>
+          <div class="er-key">Energy (kJ/mol)</div>
+        </div>
+        <div class="er-item">
+          <div class="er-val" id="erConf">Eclipsed</div>
+          <div class="er-key">Conformation</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>φ = Dihedral angle &nbsp;|&nbsp;
+    Ethane rotational barrier ≈ 12.6 kJ/mol &nbsp;|&nbsp;
+    Butane: gauche ≈ 3.8 · eclipsed(H/Me) ≈ 14.6 · eclipsed(Me/Me) ≈ 22.6 kJ/mol</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
