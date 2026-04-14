@@ -73,7 +73,7 @@ Future Enhancements
 •	 Mobile-friendly version 
 
 # Contributors
-TARANIJA SINGH(25MIM10244)
+TARANIJA SINGH(25MIM10242)
 
 ANUKREETI SINGH (25BCE11154)
 
