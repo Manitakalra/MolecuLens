@@ -55,10 +55,10 @@ How It Works
 
 ### Applications
 •	Chemistry education in schools & colleges 
-•	 Research in molecular chemistry 
+•	Research in molecular chemistry 
 •	Drug design & pharmaceutical analysis 
 •	Biochemistry visualization 
-•	 Academic projects & hackathons 
+•	Academic projects & hackathons 
 
 ### Limitations
 •	Large molecules may reduce rendering performance 
@@ -67,11 +67,11 @@ How It Works
 •	AI insights depend on model training quality (if used) 
 
 ### Future Enhancements
-•	 Integration with PubChem / real chemical databases 
-•	 VR/AR-based molecular exploration 
+•	Integration with PubChem / real chemical databases 
+•	VR/AR-based molecular exploration 
 •	AI-powered molecule property prediction 
 •	Chemical reaction simulation engine 
-•	 Mobile-friendly version 
+•	Mobile-friendly version 
 
 ### Contributors
 TARANIJA SINGH(25MIM10242)
